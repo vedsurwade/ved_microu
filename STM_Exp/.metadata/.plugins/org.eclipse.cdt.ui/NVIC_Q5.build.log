@@ -1,0 +1,10 @@
+19:43:00 **** Incremental Build of configuration Debug for project NVIC_Q5 ****
+make -j8 all 
+arm-none-eabi-size  NVIC_Q5.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7608	     12	   1644	   9264	   2430	NVIC_Q5.elf
+Finished building: default.size.stdout
+ 
+
+19:43:00 Build Finished. 0 errors, 0 warnings. (took 287ms)
+

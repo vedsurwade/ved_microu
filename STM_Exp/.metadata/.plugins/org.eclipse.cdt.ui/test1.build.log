@@ -1,0 +1,65 @@
+18:28:16 **** Build of configuration Debug for project test1 ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f407vgtx.d" -MT"Startup/startup_stm32f407vgtx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f407vgtx.o" "../Startup/startup_stm32f407vgtx.s"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+../Src/main.c: In function 'SysTick_Init':
+../Src/main.c:55:5: warning: implicit declaration of function 'SystemCoreClockUpdate' [-Wimplicit-function-declaration]
+   55 |     SystemCoreClockUpdate();
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Src/main.c:57:5: error: 'SysTick' undeclared (first use in this function)
+   57 |     SysTick->LOAD = (SystemCoreClock / 1000U) - 1U;
+      |     ^~~~~~~
+../Src/main.c:57:5: note: each undeclared identifier is reported only once for each function it appears in
+../Src/main.c:57:22: error: 'SystemCoreClock' undeclared (first use in this function)
+   57 |     SysTick->LOAD = (SystemCoreClock / 1000U) - 1U;
+      |                      ^~~~~~~~~~~~~~~
+../Src/main.c:60:21: error: 'SysTick_CTRL_CLKSOURCE_Msk' undeclared (first use in this function)
+   60 |     SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk |
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../Src/main.c:61:21: error: 'SysTick_CTRL_ENABLE_Msk' undeclared (first use in this function)
+   61 |                     SysTick_CTRL_ENABLE_Msk;
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~
+../Src/main.c: In function 'Delay_ms':
+../Src/main.c:69:17: error: 'SysTick' undeclared (first use in this function)
+   69 |         while ((SysTick->CTRL & (1 << 16U)) == 0U)
+      |                 ^~~~~~~
+../Src/main.c: In function 'LED_GPIO_Init':
+../Src/main.c:82:5: error: 'RCC' undeclared (first use in this function)
+   82 |     RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
+      |     ^~~
+../Src/main.c:82:21: error: 'RCC_AHB1ENR_GPIODEN' undeclared (first use in this function)
+   82 |     RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
+      |                     ^~~~~~~~~~~~~~~~~~~
+../Src/main.c:92:5: error: 'GPIOD' undeclared (first use in this function)
+   92 |     GPIOD->MODER &= ~(0xFFU << 24U);
+      |     ^~~~~
+../Src/main.c: In function 'Button_GPIO_Init':
+../Src/main.c:102:5: error: 'RCC' undeclared (first use in this function)
+  102 |     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+      |     ^~~
+../Src/main.c:102:21: error: 'RCC_AHB1ENR_GPIOAEN' undeclared (first use in this function)
+  102 |     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+      |                     ^~~~~~~~~~~~~~~~~~~
+../Src/main.c:105:5: error: 'GPIOA' undeclared (first use in this function)
+  105 |     GPIOA->MODER &= ~(3U << 0U);
+      |     ^~~~~
+../Src/main.c: In function 'LEDs_Off':
+../Src/main.c:111:5: error: 'GPIOD' undeclared (first use in this function)
+  111 |     GPIOD->BSRR = (ALL_LEDS << 16U);
+      |     ^~~~~
+../Src/main.c: In function 'main':
+../Src/main.c:131:9: error: 'GPIOD' undeclared (first use in this function)
+  131 |         GPIOD->ODR ^= LED_GREEN;
+      |         ^~~~~
+../Src/main.c: At top level:
+../Src/main.c:99:13: warning: 'Button_GPIO_Init' defined but not used [-Wunused-function]
+   99 | static void Button_GPIO_Init(void)
+      |             ^~~~~~~~~~~~~~~~
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+18:28:16 Build Failed. 15 errors, 2 warnings. (took 178ms)
+

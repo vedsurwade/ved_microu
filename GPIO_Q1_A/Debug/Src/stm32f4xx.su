@@ -1,0 +1,7 @@
+../Src/stm32f4xx.c:11:6:systick_init	4	static
+../Src/stm32f4xx.c:18:6:delay_ms	32	static
+../Src/stm32f4xx.c:34:6:toggle_green	8	static
+../Src/stm32f4xx.c:53:6:toggle_all	8	static
+../Src/stm32f4xx.c:72:6:forward_sequence	8	static
+../Src/stm32f4xx.c:104:6:ForwardReverseSequence	32	static
+../Src/stm32f4xx.c:140:6:ReadFromPin	4	static
